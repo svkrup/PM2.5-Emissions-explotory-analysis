@@ -18,8 +18,9 @@ coal_yr <- group_by(coal, year)
 coalyr_sum <- summarise(coal_yr, sum=sum(Emissions))
 
 # Plot coal emissions trend across years
-library(ggplot2)
+# library(ggplot2)
 png(filename="coal.png")
-cl <- ggplot(coalyr_sum, aes(x = year, y = sum))
-cl+ geom_point(col="blue") + ggtitle("PM2.5 emission trends for coal sources")+ labs(x="Year", y="Emissions in tons")+ geom_smooth(method='lm', se=FALSE)
+#cl <- ggplot(coalyr_sum, aes(x = year, y = sum))
+#cl+ geom_point(col="blue") + ggtitle("PM2.5 emission trends for coal sources")+ labs(x="Year", y="Emissions in tons")+ geom_smooth(method='lm', se=FALSE)
+barplot(coalyr_sum$sum/1000, names.arg = coalyr_sum$year, col = c("red", "yellow", "orange", "blue"), ylab = "Emissions in kilotons from coal sources", space = 1, main = "Emission trends from coal sources")
 dev.off()
